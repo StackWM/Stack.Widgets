@@ -1,7 +1,5 @@
 ﻿namespace LostTech.Stack.Widgets.DataSources
 {
-    using System;
-    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Threading;
 
@@ -25,7 +23,7 @@
             if (d is not IRefreshable refreshable)
                 return;
 
-            var refresher = (Refresher)d.GetValue(RefresherPropertyKey.DependencyProperty);
+            var refresher = (Refresher?)d.GetValue(RefresherPropertyKey.DependencyProperty);
             Duration value = change.NewValue is Duration duration ? duration : Duration.Forever;
 
             if (value.HasTimeSpan) {
@@ -44,7 +42,12 @@
         }
 
         static void RefreshTimerOnTick(object? sender, EventArgs e) {
-            var refresher = (Refresher)((DispatcherTimer)sender!).Tag;
+            var timer = (DispatcherTimer)sender!;
+            var self = (WeakReference)timer.Tag;
+            if (self.Target is not Refresher refresher) {
+                timer.Stop();
+                return;
+            }
             var refreshable = refresher.Refreshable;
             if (refreshable.RefreshCommand.CanExecute(null)) {
                 Trace.WriteLine($"refreshing {refreshable}");
