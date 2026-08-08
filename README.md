@@ -11,7 +11,7 @@ A collection of widgets for Stack
   - [RefreshableDataSource](#refreshabledatasource)
   - [Refreshable data sources](#refreshable-data-sources)
 - [Parsers and data binding](docs/DataBinding.md)
-- [Samples](http://stack.blogs.losttech.software/Inline-Widgets/)
+- [Samples](https://stackwm.github.io/Inline-Widgets/)
 
 # Widgets
 ## Usage
@@ -127,4 +127,4 @@ The following property can be set to update them at regular intervals:
 **DataSource.RefreshInterval** (bindable) - sets the refresh interval.
 
 ## Samples
-Sample inline widgets are demostrated in the [blog post](http://stack.blogs.losttech.software/Inline-Widgets/)
+Sample inline widgets are demostrated in the [blog post](https://stackwm.github.io/Inline-Widgets/)
